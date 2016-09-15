@@ -20,8 +20,12 @@ public class UsersDataSet implements Serializable { // Serializable Important to
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name", unique = true, updatable = false)
-    private String name;
+    @Column(name = "login", unique = true, updatable = false)
+    private String login;
+
+    @Column(name = "password")
+    private String pass;
+
 
     //Important to Hibernate!
     @SuppressWarnings("UnusedDeclaration")
@@ -31,21 +35,27 @@ public class UsersDataSet implements Serializable { // Serializable Important to
     @SuppressWarnings("UnusedDeclaration")
     public UsersDataSet(long id, String name) {
         this.setId(id);
-        this.setName(name);
+        this.setLogin(name);
     }
 
-    public UsersDataSet(String name) {
+    public UsersDataSet(String login) {
         this.setId(-1);
-        this.setName(name);
+        this.setLogin(login);
+    }
+
+    public UsersDataSet (String login, String pass) {
+        this.setId(-1);
+        this.setLogin(login);
+        this.setPass(pass);
     }
 
     @SuppressWarnings("UnusedDeclaration")
     public String getName() {
-        return name;
+        return login;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public long getId() {
@@ -56,11 +66,19 @@ public class UsersDataSet implements Serializable { // Serializable Important to
         this.id = id;
     }
 
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
     @Override
     public String toString() {
         return "UserDataSet{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", login='" + login + '\'' +
                 '}';
     }
 }
